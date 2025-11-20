@@ -1,17 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import { HashRouter, Route } from 'react-router'
-import { Routes } from 'react-router'
-import Home from "./components/Home"
-import About from "./components/About"
+import { useState } from 'react';
+import { HashRouter, Routes, Route } from 'react-router';
+
+import './App.css';
+import Home from "./components/Home";
+import EventsPage from "./components/EventsPage";
+import ExhibitsPage from "./components/ExhibitsPage";
+import SpeciesPage from "./components/SpeciesPage";
+import BasketPage from "./components/BasketPage";
+import ExhibitDetails from "./components/ExhibitDetails";
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return <HashRouter>
     <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/about" element={<About/>}/>
+      <Route path="/events" element={<EventsPage/>}/>
+      <Route path="/exhibits" element={<ExhibitsPage/>}/>
+      <Route path="/exhibit_info" element={<ExhibitDetails/>}/>
+      <Route path="/species" element={<SpeciesPage/>}/>
+      <Route path="/basket" element={<BasketPage/>}/>
     </Routes>
   </HashRouter>
 }

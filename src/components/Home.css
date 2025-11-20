@@ -1,0 +1,18 @@
+.event-item {
+    padding: 5;
+}
+
+#fish-main {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+#fish-image {
+    justify-content: center;
+}
+
+#fish-info {
+    text-align: left;
+    padding-left: 10px;
+}
