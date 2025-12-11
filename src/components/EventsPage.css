@@ -1,0 +1,21 @@
+#events-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%
+}
+
+#event-cards {
+    width: 100%;
+}
+
+#event-card-main {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+#info {
+    text-align: left;
+    padding-left: 10px;
+}

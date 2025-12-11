@@ -1,46 +1,52 @@
-import { useNavigate } from "react-router";
-
+import { exhibits, species } from "../information";
 import HeaderBar from "./HeaderBar";
-import "./ExhibitCard.css";
+import "./ExhibitsPage.css";
+import { useState } from "react";
+import ExhibitCard from "./ExhibitCard";
 
-function ExhibitCard(props) {
-    const navigate = useNavigate();
-
-    return <div>
-        { props.num % 2 === 0
-            ? <div id="main">
-                <img src="images/placeholder.png" alt="an image of an aqaurium" height="250"/>
-                <div id="info">
-                    <h2>Exhibit Name</h2>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris orci nisi, vestibulum vitae sodales vitae, convallis sed nibh. Pellentesque pharetra urna sit amet nisi fringilla dictum sit amet ac arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam tristique arcu porta pulvinar aliquet. Duis ut interdum mauris. Vivamus in lectus eget massa molestie pretium. Ut tempor at mauris at convallis. </p>
-                    <button onClick={() => navigate("/exhibit_info")}>learn more</button>
-                </div>
-            </div>
-            : <div id="main">
-                <div id="info">
-                    <h2>Exhibit Name</h2>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris orci nisi, vestibulum vitae sodales vitae, convallis sed nibh. Pellentesque pharetra urna sit amet nisi fringilla dictum sit amet ac arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam tristique arcu porta pulvinar aliquet. Duis ut interdum mauris. Vivamus in lectus eget massa molestie pretium. Ut tempor at mauris at convallis. </p>
-                    <button onClick={() => navigate("/exhibit_info")}>learn more</button>
-                </div>
-                <img src="images/placeholder.png" alt="an image of an aqaurium" height="250"/>
-            </div>
-            }
-    </div>
-}
-
-function ExhibitZone(props) {
-    let exhibits = [1, 2, 3]
-    return <div>
-        { exhibits 
-            ? exhibits.map(exhibit => <ExhibitCard key={exhibit} num={exhibit}/>)
-            : <p>Loading exhibits...</p>
-        }
+function FishProfile(props) {
+    let fish = props.fish;
+    return <div style={{maxWidth: "100px"}}>
+        <img src={`images/${fish.img}.png`} alt={`an image of a ${fish.name}`} height="50"/>
+        <p>{fish.name}</p>
     </div>
 }
 
 export default function ExhibitsPage(props) {
-    return <div>
+    const [showDetails, setShowDetails] = useState(false);
+    const [fish, setFish] = useState([]);
+    const [curExhibit, setCurExhibit] = useState("")
+
+    function setExhibit(id) {
+        setFish(o => {
+            let newO = species.filter(s => s.exhibit === id);
+            return newO;
+        });
+        setShowDetails(true);
+        setCurExhibit(exhibits.filter(ex => ex.id === id)[0]);
+    }
+    
+    return <div id="exhibits-main">
         <HeaderBar/>
-        <ExhibitZone/>
+        <div>
+        { showDetails 
+        ? <div>
+            <div id="details-main">
+                <img src={`images/${curExhibit.img}.png`} alt={`an image of the ${curExhibit.name} exhibit`} height="250"/>
+                <div id="info">
+                    <h2>{curExhibit.name}</h2>
+                    <p>{curExhibit.description}</p>
+                </div>
+            </div>
+            <div id="fish-profiles">
+                { fish.map(f => <FishProfile key={f.id} fish={f}/>) }
+            </div>
+            <button onClick={() => setShowDetails(false)} id="back-button">back</button>
+        </div>
+        : exhibits 
+            ? exhibits.map(ex => <ExhibitCard key={ex.id} num={ex.num} exhibit={ex} setExhibit={setExhibit}/>)
+            : <p>Loading exhibits...</p>
+        }
+        </div>
     </div>
 }

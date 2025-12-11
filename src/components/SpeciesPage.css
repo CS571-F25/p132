@@ -1,0 +1,15 @@
+#species-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%
+}
+
+#modal {
+    text-align: center;
+}
+
+#x-button {
+    display: block;
+    margin-left: auto;
+}

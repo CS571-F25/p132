@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import "./HeaderBar.css"
 
 export default function HeaderBar() {
-    return <Navbar>
+    return <Navbar id="bar">
         <Container>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse>

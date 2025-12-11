@@ -1,0 +1,17 @@
+#basket-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%
+}
+
+#event-cards {
+    width: 100%;
+}
+
+#event-card-main {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    width: 100%;
+}

@@ -1,0 +1,22 @@
+#exhibits-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%
+}
+
+#fish-profiles {
+    width: 100%;
+    display: flex;
+}
+
+#details-main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px;
+}
+
+#back-button {
+    align-items: left;
+}

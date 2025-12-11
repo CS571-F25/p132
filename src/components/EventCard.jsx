@@ -1,8 +1,7 @@
 import { useState } from "react";
-import HeaderBar from "./HeaderBar";
-import "./BasketPage.css"
+import "./EventsPage.css"
 
-function EventCard(props) {
+export default function EventCard(props) {
     const [seeMore, setSeeMore] = useState(false);
     let event = props.event;
 
@@ -21,25 +20,13 @@ function EventCard(props) {
                 <button onClick={() => setSeeMore(curr => !curr)}>{seeMore ? "see less" : "see more"}</button>
                 { seeMore 
                     ? <button onClick={() => {
-                            props.removeBooked(event.name);
+                            props.addBooked(event.name);
                             setSeeMore(false);
                         }
-                        }>cancel</button>
+                        }>book</button>
                     : <div/>
                 }
             </div>
         </div>
-    </div>
-}
-
-export default function BasketPage(props) {
-
-    return <div id="basket-main">
-        <HeaderBar/>
-        {
-            props.events
-            ? props.events.map(event => <EventCard key={event.name} event={event} addBooked={props.addBooked} removeBooked={props.removeBooked}/>)
-            : <div></div>
-        }
     </div>
 }
